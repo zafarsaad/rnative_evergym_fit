@@ -1,4 +1,4 @@
-export const WORKOUTS = [
+export const WORKOUTGROUPS = [
     {
         id: 0,
         name: "Chest and Triceps",
