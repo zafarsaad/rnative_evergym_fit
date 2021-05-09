@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { Card } from 'react-native-elements';
+import { WORKOUTGROUPS } from '../shared/workoutGroups';
 
-function RenderWorkoutGroup({workoutGroup}) {
+function RenderWorkoutGroup({ workoutGroup }) {
     if (workoutGroup) {
         return (
-            <Card 
+            <Card
                 featuredTitle={workoutGroup.name}
                 image={require('./images/react-lake.jpg')}
             >
-                <Text style={{margin: 10}}>
+                <Text style={{ margin: 10 }}>
                     {workoutGroup.description}
                 </Text>
             </Card>
@@ -18,8 +19,25 @@ function RenderWorkoutGroup({workoutGroup}) {
     return <View />;
 }
 
-function WorkoutGroupInfo(props) {
-    return <RenderWorkoutGroup workoutGroup={props.workoutGroup} />;
+class WorkoutGroupInfo extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            workoutGroups: WORKOUTGROUPS
+        };
+    }
+
+    static navigationOptions = {
+        title: 'Workout Groups'
+    }
+
+    render() {
+        const workoutGroupId = this.props.navigation.getParam('workoutGroupId');
+        const workoutGroup = this.state.workoutGroups.filter(workoutGroup => workoutGroup.id === workoutGroupId)[0];
+        return <RenderWorkoutGroup workoutGroup={workoutGroup} />;
+    }
+
 }
 
 export default WorkoutGroupInfo;

@@ -1,34 +1,40 @@
 import React, { Component } from 'react';
 import WorkoutList from './WorkoutListComponent';
 import WorkoutGroupInfo from './WorkoutGroupInfoComponent';
-import { View } from 'react-native';
-import { WORKOUTGROUPS } from '../shared/workoutGroups';
+import { View, Platform } from 'react-native';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation';
 
+const WorkoutListNavigator = createStackNavigator(
+    {
+        WorkoutList: { screen: WorkoutList },
+        WorkoutGroupInfo: { screen: WorkoutGroupInfo }
+    },
+    {
+        initialRouteName: 'WorkoutList',
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: '#5637DD'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            }
+        }
+    }
+);
+
+const AppNavigator = createAppContainer(WorkoutListNavigator);
 
 class Main extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            workoutGroups: WORKOUTGROUPS,
-            selectedWorkoutGroup: null
-        };
-    }
-
-    onWorkoutGroupSelect(workoutGroupId) {
-        this.setState({selectedWorkoutGroup: workoutGroupId});
-    }
-
     render() {
         return (
-            <View style={{flex: 1}}>
-                <WorkoutList
-                    workoutGroups={this.state.workoutGroups}
-                    onPress={workoutGroupId => this.onWorkoutGroupSelect(workoutGroupId)}
-                />
-                <WorkoutGroupInfo
-                    workoutGroup={this.state.workoutGroups.filter(
-                        workoutGroup => workoutGroup.id === this.state.selectedWorkoutGroup)[0]}
-                />
+            <View
+                style={{
+                    flex: 1,
+                    paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight
+                }}>
+                <AppNavigator />
             </View>
         );
     }
