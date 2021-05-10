@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
 import { FlatList } from 'react-native';
-import { ListItem } from 'react-native-elements';
-import { WORKOUTGROUPS } from '../shared/workoutGroups';
+// import { ListItem } from 'react-native-elements';
+// TODO Local Import
+// import { WORKOUTGROUPS } from '../shared/workoutGroups';
+import { Tile } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
+
+const mapStateToProps = state => {
+    return {
+        workoutGroups: state.workoutGroups,
+    };
+};
 
 class WorkoutList extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            workoutGroups: WORKOUTGROUPS
-        }
-    }
+    // TODO remove constructur
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         workoutGroups: WORKOUTGROUPS
+    //     }
+    // }
 
     static navigationOptions = {
         title: 'Workout List'
@@ -20,18 +31,19 @@ class WorkoutList extends Component {
         const { navigate } = this.props.navigation;
         const renderWorkoutListItem = ({ item }) => {
             return (
-                <ListItem
+                <Tile
                     title={item.name}
-                    subtitle={item.description}
+                    caption={item.description}
+                    featured
                     onPress={() => navigate('WorkoutGroupInfo', { workoutGroupId: item.id })}
-                    leftAvatar={{ source: require('./images/react-lake.jpg') }}
+                    imageSrc={{uri: baseUrl + item.image}}
                 />
             );
         };
 
         return (
             <FlatList
-                data={this.state.workoutGroups}
+                data={this.props.workoutGroups.workoutGroups}
                 renderItem={renderWorkoutListItem}
                 keyExtractor={item => item.id.toString()}
             />
@@ -40,4 +52,4 @@ class WorkoutList extends Component {
 
 }
 
-export default WorkoutList;
+export default connect(mapStateToProps)(WorkoutList);

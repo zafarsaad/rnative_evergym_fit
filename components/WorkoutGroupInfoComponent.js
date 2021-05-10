@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, FlatList } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
-import { WORKOUTGROUPS } from '../shared/workoutGroups';
-import { EXERCISES } from '../shared/exercises';
+// TODO local import
+// import { WORKOUTGROUPS } from '../shared/workoutGroups';
+// import { EXERCISES } from '../shared/exercises';
+import { connect } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
+
+const mapStateToProps = state => {
+    return {
+        workoutGroups: state.workoutGroups,
+        exercises: state.exercises
+    };
+};
 
 function RenderWorkoutGroup(props) {
 
@@ -12,7 +22,7 @@ function RenderWorkoutGroup(props) {
         return (
             <Card
                 featuredTitle={workoutGroup.name}
-                image={require('./images/react-lake.jpg')}
+                image={{uri: baseUrl + workoutGroup.image}}
             >
                 <Text style={{ margin: 10 }}>
                     {workoutGroup.description}
@@ -70,8 +80,6 @@ class WorkoutGroupInfo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            workoutGroups: WORKOUTGROUPS,
-            exercises: EXERCISES,
             favorite: false
         };
     }
@@ -86,8 +94,8 @@ class WorkoutGroupInfo extends Component {
 
     render() {
         const workoutGroupId = this.props.navigation.getParam('workoutGroupId');
-        const workoutGroup = this.state.workoutGroups.filter(workoutGroup => workoutGroup.id === workoutGroupId)[0];
-        const exercises = this.state.exercises.filter(exercise => exercise.workoutGroupId === workoutGroupId);
+        const workoutGroup = this.props.workoutGroups.workoutGroups.filter(workoutGroup => workoutGroup.id === workoutGroupId)[0];
+        const exercises = this.props.exercises.exercises.filter(exercise => exercise.workoutGroupId === workoutGroupId);
         return (
             <ScrollView>
                 <RenderWorkoutGroup workoutGroup={workoutGroup}
@@ -105,4 +113,4 @@ class WorkoutGroupInfo extends Component {
 
 }
 
-export default WorkoutGroupInfo;
+export default connect(mapStateToProps)(WorkoutGroupInfo);

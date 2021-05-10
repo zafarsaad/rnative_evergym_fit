@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, Text, FlatList } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
-import { Text } from 'react-native';
-import { PARTNERS } from '../shared/partners';
-import { FlatList } from 'react-native';
+// TODO - import state locally
+// import { PARTNERS } from '../shared/partners';
+import { connect } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
+
+const mapStateToProps = state => {
+    return {
+        partners: state.partners
+    };
+};
 
 function Mission() {
     return (
@@ -16,27 +23,28 @@ function Mission() {
 
 class Trainers extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            partners: PARTNERS
-        }
-    }
+    // TODO - removed local state
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         partners: PARTNERS
+    //     }
+    // }
 
     static navigationOptions = {
         title: 'Trainers'
     }
 
     render() {
-        // const renderPartner = ({ item }) => {
-        //     return (
-        //         <ListItem
-        //             title={item.name}
-        //             subtitle={item.description}
-        //             leftAvatar={{ source: require('./images/bootstrap-logo.png') }}
-        //         />
-        //     );
-        // }
+        const renderPartner = ({ item }) => {
+            return (
+                <ListItem
+                    title={item.name}
+                    subtitle={item.description}
+                    leftAvatar={{source: {uri: baseUrl + item.image}}}
+                />
+            );
+        }
         console.log("Partners", this.state.partners)
         return (
             <ScrollView>
@@ -51,22 +59,15 @@ class Trainers extends Component {
                     wrapperStyle={{ margin: 10 }}
                 >
                     <FlatList
-                    // data={this.state.partners}
-                    // renderItem={renderPartner}
-                    // keyExtractor={item => item.id.toString()}
-                    >
-                        <ListItem
-                        // title={this.state.partners[0].name}
-                        // subtitle={this.state.partners[0].description}
-                        // leftAvatar={{ source: require('./images/bootstrap-logo.png') }}
-                        >
-                            <Text>Test</Text>
-                        </ListItem>
-                    </FlatList>
+                        data={this.props.partners.partners}
+                        renderItem={renderPartner}
+                        keyExtractor={item => item.id.toString()}
+                    />
+
                 </Card>
             </ScrollView>
         );
     }
 }
 
-export default Trainers;
+export default connect(mapStateToProps)(Trainers);
