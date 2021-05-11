@@ -31,6 +31,36 @@ export const addExercises = exercises => ({
     payload: exercises
 });
 
+export const fetchLogs = () => dispatch => {
+    return fetch(baseUrl + 'logs')
+        .then(response => {
+                if (response.ok) {
+                    return response;
+                } else {
+                    const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                    error.response = response;
+                    throw error;
+                }
+            },
+            error => {
+                const errMess = new Error(error.message);
+                throw errMess;
+            })
+        .then(response => response.json())
+        .then(logs => dispatch(addLogs(logs)))
+        .catch(error => dispatch(logsFailed(error.message)));
+};
+
+export const logsFailed = errMess => ({
+    type: ActionTypes.LOGS_FAILED,
+    payload: errMess
+});
+
+export const addLogs = logs => ({
+    type: ActionTypes.ADD_LOGS,
+    payload: logs
+});
+
 export const fetchWorkOutGroups = () => dispatch => {
 
     dispatch(workoutGroupsLoading());
@@ -141,3 +171,34 @@ export const addTrainers = trainers => ({
     type: ActionTypes.ADD_TRAINERS,
     payload: trainers
 });
+
+export const postFavorite = workoutGroupId => dispatch => {
+    setTimeout(() => {
+        dispatch(addFavorite(workoutGroupId));
+    }, 2000);
+};
+
+export const addFavorite = workoutGroupId => ({
+    type: ActionTypes.ADD_FAVORITE,
+    payload: workoutGroupId
+});
+
+export const postComment = (campsiteId, rating, author, text) => dispatch => {
+
+    const newComment = {
+        campsiteId,
+        rating,
+        author,
+        text
+    };
+    newComment.date = new Date().toISOString();
+
+    setTimeout(() => {
+        dispatch(addComment(newComment));
+    }, 2000);
+};
+
+export const addComment = comment => ({
+    type: ActionTypes.ADD_COMMENT,
+    payload: comment
+})

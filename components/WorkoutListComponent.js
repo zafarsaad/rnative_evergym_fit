@@ -24,7 +24,7 @@ class WorkoutList extends Component {
     // }
 
     static navigationOptions = {
-        title: 'Workout List'
+        title: 'Workouts'
     }
 
     render() {

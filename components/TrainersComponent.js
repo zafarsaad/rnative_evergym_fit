@@ -8,7 +8,7 @@ import { baseUrl } from '../shared/baseUrl';
 
 const mapStateToProps = state => {
     return {
-        partners: state.partners
+        trainers: state.trainers
     };
 };
 
@@ -45,21 +45,21 @@ class Trainers extends Component {
                 />
             );
         }
-        console.log("Partners", this.state.partners)
+        console.log("Trainers", this.props.trainers)
         return (
             <ScrollView>
                 <Card
-                    title={"Our Trainers"}
+                    title={"Our Team!"}
                     wrapperStyle={{ margin: 10 }}
                 >
                     <Mission />
                 </Card>
                 <Card
-                    title={"Current Trainers"}
+                    title={"Currently Available"}
                     wrapperStyle={{ margin: 10 }}
                 >
                     <FlatList
-                        data={this.props.partners.partners}
+                        data={this.props.trainers.trainers}
                         renderItem={renderPartner}
                         keyExtractor={item => item.id.toString()}
                     />

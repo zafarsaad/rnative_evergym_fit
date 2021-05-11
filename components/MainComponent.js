@@ -4,6 +4,7 @@ import WorkoutList from './WorkoutListComponent';
 import WorkoutGroupInfo from './WorkoutGroupInfoComponent';
 import Trainers from './TrainersComponent';
 import Contact from './ContactComponent';
+import Giveaway from './GiveawayComponent';
 import { View, Platform, StyleSheet, Text, ScrollView, Image } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -11,11 +12,12 @@ import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
 import { createAppContainer } from 'react-navigation';
 import SafeAreaView from 'react-native-safe-area-view';
 import { connect } from 'react-redux';
-import { fetchWorkOutGroups, fetchExercises, fetchPromotions, fetchTrainers } from '../redux/ActionCreators';
+import { fetchWorkOutGroups, fetchExercises, fetchPromotions, fetchTrainers, fetchLogs } from '../redux/ActionCreators';
 
 const mapDispatchToProps = {
     fetchWorkOutGroups,
     fetchExercises,
+    fetchLogs,
     fetchPromotions,
     fetchTrainers
 };
@@ -56,14 +58,14 @@ const HomeNavigator = createStackNavigator(
     {
         defaultNavigationOptions: ({ navigation }) => ({
             headerStyle: {
-                backgroundColor: '#5637DD'
+                backgroundColor: '#f78800'
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
                 color: '#fff'
             },
             headerLeft: <Icon
-                name='home'
+                name='star-o'
                 type='font-awesome'
                 iconStyle={styles.stackIcon}
                 onPress={() => navigation.toggleDrawer()}
@@ -79,14 +81,37 @@ const TrainersNavigator = createStackNavigator(
     {
         defaultNavigationOptions: ({ navigation }) => ({
             headerStyle: {
-                backgroundColor: '#5637DD'
+                backgroundColor: '#f78800'
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
                 color: '#fff'
             },
             headerLeft: <Icon
-                name='info-circle'
+                name='user-plus'
+                type='font-awesome'
+                iconStyle={styles.stackIcon}
+                onPress={() => navigation.toggleDrawer()}
+            />
+        })
+    }
+);
+
+const GiveawayNavigator = createStackNavigator(
+    {
+        Giveaway: { screen: Giveaway }
+    },
+    {
+        defaultNavigationOptions: ({navigation}) => ({
+            headerStyle: {
+                backgroundColor: '#f78800'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            },
+            headerLeft: <Icon
+                name='tree'
                 type='font-awesome'
                 iconStyle={styles.stackIcon}
                 onPress={() => navigation.toggleDrawer()}
@@ -102,7 +127,7 @@ const ContactNavigator = createStackNavigator(
     {
         defaultNavigationOptions: ({ navigation }) => ({
             headerStyle: {
-                backgroundColor: '#5637DD'
+                backgroundColor: '#f78800'
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
@@ -125,10 +150,10 @@ const CustomDrawerContentComponent = props => (
             forceInset={{ top: 'always', horizontal: 'never' }}>
             <View style={styles.drawerHeader}>
                 <View style={{ flex: 1 }}>
-                    <Image source={require('./images/logo.png')} style={styles.drawerImage} />
+                    <Image source={require('./images/logo2.png')} style={styles.drawerImage} />
                 </View>
                 <View style={{ flex: 2 }}>
-                    <Text style={styles.drawerHeaderText}>NuCamp</Text>
+                    <Text style={styles.drawerHeaderText}>EverGym Fit</Text>
                 </View>
             </View>
             <DrawerItems {...props} />
@@ -141,9 +166,10 @@ const MainNavigator = createDrawerNavigator(
         Home: {
             screen: HomeNavigator,
             navigationOptions: {
+                drawerLabel: 'New Updates!',
                 drawerIcon: ({ tintColor }) => (
                     <Icon
-                        name='home'
+                        name='star-o'
                         type='font-awesome'
                         size={24}
                         color={tintColor}
@@ -156,7 +182,7 @@ const MainNavigator = createDrawerNavigator(
             navigationOptions: {
                 drawerIcon: ({ tintColor }) => (
                     <Icon
-                        name='home'
+                        name='bolt'
                         type='font-awesome'
                         size={24}
                         color={tintColor}
@@ -170,7 +196,21 @@ const MainNavigator = createDrawerNavigator(
                 drawerLabel: 'Trainers',
                 drawerIcon: ({ tintColor }) => (
                     <Icon
-                        name='home'
+                        name='user-plus'
+                        type='font-awesome'
+                        size={24}
+                        color={tintColor}
+                    />
+                )
+            }
+        },
+        Giveaway: {
+            screen: GiveawayNavigator,
+            navigationOptions: {
+                drawerLabel: 'Giveaway',
+                drawerIcon: ({tintColor}) => (
+                    <Icon
+                        name='hand-peace-o'
                         type='font-awesome'
                         size={24}
                         color={tintColor}
@@ -184,7 +224,7 @@ const MainNavigator = createDrawerNavigator(
                 drawerLabel: 'Contact Us',
                 drawerIcon: ({ tintColor }) => (
                     <Icon
-                        name='home'
+                        name='envelope-open'
                         type='font-awesome'
                         size={24}
                         color={tintColor}
@@ -194,7 +234,7 @@ const MainNavigator = createDrawerNavigator(
         }
     },
     {
-        drawerBackgroundColor: '#fcc58d',
+        drawerBackgroundColor: '#f78800',
         contentComponent: CustomDrawerContentComponent
     }
 );
@@ -206,6 +246,7 @@ class Main extends Component {
     componentDidMount() {
         this.props.fetchWorkOutGroups();
         this.props.fetchExercises();
+        this.props.fetchLogs();
         this.props.fetchPromotions();
         this.props.fetchTrainers();
     }
@@ -228,7 +269,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     drawerHeader: {
-        backgroundColor: '#5637DD',
+        backgroundColor: '#f78800',
         height: 140,
         alignItems: 'center',
         justifyContent: 'center',

@@ -44,7 +44,7 @@ class Home extends Component {
     // }
 
     static navigationOptions = {
-        title: 'Home'
+        title: 'New Updates!'
     }
 
     render() {
