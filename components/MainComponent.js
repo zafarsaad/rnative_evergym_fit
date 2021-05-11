@@ -5,6 +5,7 @@ import WorkoutGroupInfo from './WorkoutGroupInfoComponent';
 import Trainers from './TrainersComponent';
 import Contact from './ContactComponent';
 import Giveaway from './GiveawayComponent';
+import Stopwatch from './StopWatchComponent';
 import { View, Platform, StyleSheet, Text, ScrollView, Image } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -89,6 +90,29 @@ const TrainersNavigator = createStackNavigator(
             },
             headerLeft: <Icon
                 name='user-plus'
+                type='font-awesome'
+                iconStyle={styles.stackIcon}
+                onPress={() => navigation.toggleDrawer()}
+            />
+        })
+    }
+);
+
+const StopWatchNavigator = createStackNavigator(
+    {
+        Stopwatch: { screen: Stopwatch }
+    },
+    {
+        defaultNavigationOptions: ({navigation}) => ({
+            headerStyle: {
+                backgroundColor: '#f78800'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            },
+            headerLeft: <Icon
+                name='clock-o'
                 type='font-awesome'
                 iconStyle={styles.stackIcon}
                 onPress={() => navigation.toggleDrawer()}
@@ -199,6 +223,20 @@ const MainNavigator = createDrawerNavigator(
                 drawerIcon: ({ tintColor }) => (
                     <Icon
                         name='user-plus'
+                        type='font-awesome'
+                        size={24}
+                        color={tintColor}
+                    />
+                )
+            }
+        },
+        Stopwatch: {
+            screen: StopWatchNavigator,
+            navigationOptions: {
+                drawerLabel: 'Stopwatch',
+                drawerIcon: ({tintColor}) => (
+                    <Icon
+                        name='clock-o'
                         type='font-awesome'
                         size={24}
                         color={tintColor}

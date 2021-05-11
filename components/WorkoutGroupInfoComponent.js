@@ -36,7 +36,7 @@ function RenderWorkoutGroup(props) {
                     {workoutGroup.description}
                 </Text>
                 <View style={styles.cardRow}>
-                    <Icon
+                    {/* <Icon
                         name={props.favorite ? 'heart' : 'heart-o'}
                         type='font-awesome'
                         color='#f50'
@@ -44,9 +44,9 @@ function RenderWorkoutGroup(props) {
                         reverse
                         onPress={() => props.favorite ?
                             console.log('Already set as a favorite') : props.markFavorite()}
-                    />
+                    /> */}
                     <Icon
-                        name={'pencil'}
+                        name={'check'}
                         type='font-awesome'
                         color='#5637DD'
                         raised
@@ -72,10 +72,10 @@ function RenderExercises({ exercises }) {
             <Card
                 image={{ uri: baseUrl + item.image }}
             >
-                <Text style={{ 
+                <Text style={{
                     margin: 10,
                     textAlign: 'center'
-                    }}>
+                }}>
                     {item.name}
                 </Text>
                 {/* <Icon
@@ -110,7 +110,7 @@ function RenderExercises({ exercises }) {
 function RenderLogs({ logs }) {
 
     const renderLogItem = ({ item }) => {
-        
+
         return (
             <View style={{ margin: 10 }}>
                 <Text style={{ fontSize: 14 }}>{item.date}</Text>
@@ -137,7 +137,7 @@ class WorkoutGroupInfo extends Component {
         super(props);
         this.state = {
             showModal: false,
-            rating: 5,
+            rating: 3,
             text: ''
         }
     }
@@ -147,7 +147,6 @@ class WorkoutGroupInfo extends Component {
     }
 
     handleLog(workoutGroupId) {
-        // console.log(JSON.stringify(this.state));
         this.props.postLog(workoutGroupId, this.state.rating, this.state.text)
         this.toggleModal();
     }
@@ -155,7 +154,7 @@ class WorkoutGroupInfo extends Component {
     resetForm() {
         this.setState({
             showModal: false,
-            rating: 5,
+            rating: 3,
             text: ''
         });
     }
@@ -193,18 +192,11 @@ class WorkoutGroupInfo extends Component {
                     onRequestClose={() => this.toggleModal()}
                 >
                     <View style={styles.modal}>
-                        <Rating
-                            style={{ paddingVertical: 10 }}
-                            showRating
-                            startingValue={this.state.rating}
-                            imageSize={20}
-                            onFinishRating={rating => this.setState({ rating: rating })}
-                        />
                         <Input
-                            placeholder={'How was it?'}
+                            placeholder={'How was your workout?'}
                             leftIcon={
                                 <Icon
-                                    name='comment-o'
+                                    name='pencil'
                                     type='font-awesome'
                                     size={24}
                                     color='black'
@@ -214,6 +206,14 @@ class WorkoutGroupInfo extends Component {
                             onChangeText={logText => this.setState({ text: logText })}
                             value={this.state.text}
                         />
+                        <Rating
+                            type='heart'
+                            style={{ paddingVertical: 10 }}
+                            showRating
+                            startingValue={this.state.rating}
+                            imageSize={20}
+                            onFinishRating={rating => this.setState({ rating: rating })}
+                        />
                         <View
                             style={{ margin: 20 }}
                         >
@@ -222,7 +222,7 @@ class WorkoutGroupInfo extends Component {
                                     this.handleLog(workoutGroupId);
                                     this.resetForm();
                                 }}
-                                color='#5637DD'
+                                color='#f78800'
                                 title='Submit'
                             />
                         </View>

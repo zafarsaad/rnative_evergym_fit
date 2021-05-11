@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, StyleSheet,
-    Picker, Switch, Button } from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import { Text, View, ScrollView, StyleSheet, Picker, Button } from 'react-native';
 
 class Giveaway extends Component {
 
@@ -10,8 +8,6 @@ class Giveaway extends Component {
 
         this.state = {
             entries: 10,
-            hikeIn: false,
-            date: new Date(),
             showCalendar: false
         };
     }
@@ -24,8 +20,6 @@ class Giveaway extends Component {
         console.log(JSON.stringify(this.state));
         this.setState({
             entries: 1,
-            hikeIn: false,
-            date: new Date(),
             showCalendar: false     
         });
     }
@@ -38,8 +32,9 @@ class Giveaway extends Component {
                     <Picker
                         style={styles.formItem}
                         selectedValue={this.state.entries}
-                        onValueChange={itemValue => this.setState({campers: itemValue})}
+                        onValueChange={itemValue => this.setState({entries: itemValue})}
                     >
+                        <Picker.Item label='0' value='0' />
                         <Picker.Item label='1' value='1' />
                         <Picker.Item label='2' value='2' />
                         <Picker.Item label='3' value='3' />
@@ -47,37 +42,6 @@ class Giveaway extends Component {
                         <Picker.Item label='5' value='5' />
                     </Picker>
                 </View>
-                {/* <View style={styles.formRow}>
-                    <Text style={styles.formLabel}>Hike-In?</Text>
-                    <Switch
-                        style={styles.formItem}
-                        value={this.state.hikeIn}
-                        trackColor={{true: '#5637DD', false: null}}
-                        onValueChange={value => this.setState({hikeIn: value})}
-                    />
-                </View> */}
-                {/* <View style={styles.formRow}>
-                    <Text style={styles.formLabel}>Date</Text>
-                    <Button
-                        onPress={() =>
-                            this.setState({showCalendar: !this.state.showCalendar})
-                        }
-                        title={this.state.date.toLocaleDateString('en-US')}
-                        color='#f78800'
-                        accessibilityLabel='Tap me to select a Giveaway date'
-                    />
-                </View>
-                {this.state.showCalendar && (
-                    <DateTimePicker
-                        value={this.state.date}
-                        mode={'date'}
-                        display='default'
-                        onChange={(event, selectedDate) => {
-                            selectedDate && this.setState({date: selectedDate, showCalendar: false});
-                        }}
-                        style={styles.formItem}
-                    />
-                )} */}
                 <View style={styles.formRow}>
                     <Button
                         onPress={() => this.handleGiveaway()}
@@ -97,7 +61,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flex: 1,
         flexDirection: 'row',
-        margin: 20
+        margin: 20,
+        marginTop: 100
     },
     formLabel: {
         fontSize: 18,
