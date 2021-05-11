@@ -28,7 +28,7 @@ const WorkoutListNavigator = createStackNavigator(
             screen: WorkoutList,
             navigationOptions: ({ navigation }) => ({
                 headerLeft: <Icon
-                    name='list'
+                    name='bolt'
                     type='font-awesome'
                     iconStyle={styles.stackIcon}
                     onPress={() => navigation.toggleDrawer()}
@@ -111,7 +111,7 @@ const GiveawayNavigator = createStackNavigator(
                 color: '#fff'
             },
             headerLeft: <Icon
-                name='tree'
+                name='hand-peace-o'
                 type='font-awesome'
                 iconStyle={styles.stackIcon}
                 onPress={() => navigation.toggleDrawer()}
@@ -156,7 +156,9 @@ const CustomDrawerContentComponent = props => (
                     <Text style={styles.drawerHeaderText}>EverGym Fit</Text>
                 </View>
             </View>
-            <DrawerItems {...props} />
+            <DrawerItems {...props} 
+                activeTintColor='white'
+            />
         </SafeAreaView>
     </ScrollView>
 );

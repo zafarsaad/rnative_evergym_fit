@@ -175,7 +175,7 @@ export const addTrainers = trainers => ({
 export const postFavorite = workoutGroupId => dispatch => {
     setTimeout(() => {
         dispatch(addFavorite(workoutGroupId));
-    }, 2000);
+    }, 500);
 };
 
 export const addFavorite = workoutGroupId => ({
@@ -183,22 +183,21 @@ export const addFavorite = workoutGroupId => ({
     payload: workoutGroupId
 });
 
-export const postComment = (campsiteId, rating, author, text) => dispatch => {
+export const postLog = (workoutGroupId, rating, text) => dispatch => {
 
-    const newComment = {
-        campsiteId,
+    const newLog = {
+        workoutGroupId,
         rating,
-        author,
         text
     };
-    newComment.date = new Date().toISOString();
+    newLog.date = new Date().toLocaleDateString();
 
     setTimeout(() => {
-        dispatch(addComment(newComment));
-    }, 2000);
+        dispatch(addLog(newLog));
+    }, 500);
 };
 
-export const addComment = comment => ({
-    type: ActionTypes.ADD_COMMENT,
-    payload: comment
+export const addLog = log => ({
+    type: ActionTypes.ADD_LOG,
+    payload: log
 })

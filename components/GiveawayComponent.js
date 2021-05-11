@@ -83,7 +83,7 @@ class Giveaway extends Component {
                         onPress={() => this.handleGiveaway()}
                         title='Enter Giveaway'
                         color='#f78800'
-                        accessibilityLabel='Tap me enter monthly giveaway'
+                        accessibilityLabel='Tap me to enter monthly giveaway'
                     />
                 </View>
             </ScrollView>

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, FlatList } from 'react-native';
-import { Card, Icon } from 'react-native-elements';
+import { Text, View, ScrollView, FlatList, Modal, StyleSheet, Button } from 'react-native';
+import { Card, Icon, Rating, Input } from 'react-native-elements';
 // TODO local import
 // import { WORKOUTGROUPS } from '../shared/workoutGroups';
 // import { EXERCISES } from '../shared/exercises';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
-import { postFavorite } from '../redux/ActionCreators';
+import { postFavorite, postLog } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
     return {
@@ -18,7 +18,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-    postFavorite: itemToFavoriteId => (postFavorite(itemToFavoriteId))
+    postFavorite: itemToFavoriteId => (postFavorite(itemToFavoriteId)),
+    postLog: (workoutGroupId, rating, text) => (postLog(workoutGroupId, rating, text))
 };
 
 function RenderWorkoutGroup(props) {
@@ -34,15 +35,25 @@ function RenderWorkoutGroup(props) {
                 <Text style={{ margin: 10 }}>
                     {workoutGroup.description}
                 </Text>
-                <Icon
-                    name={props.favorite ? 'heart' : 'heart-o'}
-                    type='font-awesome'
-                    color='#f50'
-                    raised
-                    reverse
-                    onPress={() => props.favorite ?
-                        console.log('Already set as a favorite') : props.markFavorite()}
-                />
+                <View style={styles.cardRow}>
+                    <Icon
+                        name={props.favorite ? 'heart' : 'heart-o'}
+                        type='font-awesome'
+                        color='#f50'
+                        raised
+                        reverse
+                        onPress={() => props.favorite ?
+                            console.log('Already set as a favorite') : props.markFavorite()}
+                    />
+                    <Icon
+                        name={'pencil'}
+                        type='font-awesome'
+                        color='#5637DD'
+                        raised
+                        reverse
+                        onPress={() => props.onShowModal()}
+                    />
+                </View>
             </Card>
         );
     }
@@ -104,7 +115,7 @@ function RenderLogs({ logs }) {
             <View style={{ margin: 10 }}>
                 <Text style={{ fontSize: 14 }}>{item.date}</Text>
                 <Text style={{ fontSize: 12 }}>{item.rating} Stars</Text>
-                <Text style={{ fontSize: 12 }}>{`-- ${item.author}, ${item.date}`}</Text>
+                <Text style={{ fontSize: 12 }}>{item.text}</Text>
             </View>
         );
     };
@@ -121,6 +132,33 @@ function RenderLogs({ logs }) {
 }
 
 class WorkoutGroupInfo extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            showModal: false,
+            rating: 5,
+            text: ''
+        }
+    }
+
+    toggleModal() {
+        this.setState({ showModal: !this.state.showModal });
+    }
+
+    handleLog(workoutGroupId) {
+        // console.log(JSON.stringify(this.state));
+        this.props.postLog(workoutGroupId, this.state.rating, this.state.text)
+        this.toggleModal();
+    }
+
+    resetForm() {
+        this.setState({
+            showModal: false,
+            rating: 5,
+            text: ''
+        });
+    }
 
     markFavorite(workoutGroupId) {
         this.props.postFavorite(workoutGroupId);
@@ -140,18 +178,86 @@ class WorkoutGroupInfo extends Component {
                 <RenderWorkoutGroup workoutGroup={workoutGroup}
                     favorite={this.props.favorites.includes(workoutGroupId)}
                     markFavorite={() => this.markFavorite(workoutGroupId)}
+                    onShowModal={() => this.toggleModal()}
                 />
                 <RenderExercises exercises={exercises}
                 // To Do - clear or change; add favorite exercise 
                 // favorite={this.state.favorite}
                 // markFavorite={() => this.markFavorite()}
                 />
-                <RenderLogs logs={logs}
-                />
+                <RenderLogs logs={logs} />
+                <Modal
+                    animationType={'slide'}
+                    transparent={false}
+                    visible={this.state.showModal}
+                    onRequestClose={() => this.toggleModal()}
+                >
+                    <View style={styles.modal}>
+                        <Rating
+                            style={{ paddingVertical: 10 }}
+                            showRating
+                            startingValue={this.state.rating}
+                            imageSize={20}
+                            onFinishRating={rating => this.setState({ rating: rating })}
+                        />
+                        <Input
+                            placeholder={'How was it?'}
+                            leftIcon={
+                                <Icon
+                                    name='comment-o'
+                                    type='font-awesome'
+                                    size={24}
+                                    color='black'
+                                />
+                            }
+                            leftIconContainerStyle={{ paddingRight: 10 }}
+                            onChangeText={logText => this.setState({ text: logText })}
+                            value={this.state.text}
+                        />
+                        <View
+                            style={{ margin: 20 }}
+                        >
+                            <Button
+                                onPress={() => {
+                                    this.handleLog(workoutGroupId);
+                                    this.resetForm();
+                                }}
+                                color='#5637DD'
+                                title='Submit'
+                            />
+                        </View>
+                        <View
+                            style={{ margin: 20 }}
+                        >
+                            <Button
+                                onPress={() => {
+                                    this.toggleModal();
+                                    this.resetForm();
+                                }}
+                                color='#808080'
+                                title='Cancel'
+                            />
+                        </View>
+                    </View>
+                </Modal>
             </ScrollView>
         );
     }
 
 }
+
+const styles = StyleSheet.create({
+    cardRow: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1,
+        flexDirection: 'row',
+        margin: 20
+    },
+    modal: {
+        justifyContent: 'center',
+        margin: 20
+    }
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(WorkoutGroupInfo);

@@ -18,4 +18,4 @@ export const TRAINERS_FAILED = 'TRAINERS_FAILED';
 
 // TODO
 export const ADD_FAVORITE = 'ADD_FAVORITE';
-export const ADD_COMMENT = 'ADD_COMMENT';
+export const ADD_LOG = 'ADD_LOG';
