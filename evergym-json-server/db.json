@@ -1,0 +1,463 @@
+{
+  "workoutGroups": [
+    {
+      "id": 0,
+      "name": "Back & Biceps",
+      "image": "images/backandbicep.jpeg",
+      "elevation": 1233,
+      "featured": false,
+      "description": "Total back & bicep workout to get you toned!"
+    },
+    {
+      "id": 1,
+      "name": "Bench",
+      "image": "images/bench.jpeg",
+      "elevation": 877,
+      "featured": false,
+      "description": "Total bench workout to get you toned!"
+    },
+    {
+      "id": 2,
+      "name": "Chest & Back",
+      "image": "images/chestandback.jpeg",
+      "elevation": 2901,
+      "featured": false,
+      "description": "Total chest & back workout to get you toned!"
+    },
+    {
+      "id": 3,
+      "name": "Upperbody",
+      "image": "images/upperbody.jpeg",
+      "elevation": 42,
+      "featured": true,
+      "description": "Total upperbody workout to get you toned!"
+    },
+    {
+      "id": 4,
+      "name": "Legs",
+      "image": "images/legs.jpeg",
+      "elevation": 42,
+      "featured": false,
+      "description": "Total legs workout to get you toned!"
+    }
+  ],
+  "exercises": [
+    {
+      "id": 0,
+      "workoutGroupId": 0,
+      "max": 5,
+      "text": "What a magnificent view!",
+      "name": "Alt. Bicep Curls",
+      "image": "images/back_bicep/alt-bicep.jpg"
+    },
+    {
+      "id": 1,
+      "workoutGroupId": 0,
+      "max": 4,
+      "text": "The campground was beautiful, but the bugs could bite sometimes.",
+      "name": "Bent Over Rows",
+      "image": "images/back_bicep/bent-over-row.jpg"
+    },
+    {
+      "id": 2,
+      "workoutGroupId": 0,
+      "max": 5,
+      "text": "I caught a world-record-breaking trout here on my last visit.",
+      "name": "Deadlifts",
+      "image": "images/back_bicep/deadlifts.jpg"
+    },
+    {
+      "id": 3,
+      "workoutGroupId": 0,
+      "max": 5,
+      "text": "A wonderful place to reconnect with nature.",
+      "name": "One Arm Rows",
+      "image": "images/back_bicep/one-arm-row.jpg"
+    },
+    {
+      "id": 4,
+      "workoutGroupId": 0,
+      "max": 4,
+      "text": "The stars at night were a revelation!",
+      "name": "Shoulder Press",
+      "image": "images/back_bicep/shoulder-press.jpg"
+    },
+    {
+      "id": 5,
+      "workoutGroupId": 1,
+      "max": 4,
+      "text": "The campground was beautiful, but the bugs could bite sometimes.",
+      "name": "Bicep Curls",
+      "image": "images/bench/bicep-curls.jpg"
+    },
+    {
+      "id": 6,
+      "workoutGroupId": 1,
+      "max": 5,
+      "text": "I caught a world-record-breaking trout here on my last visit.",
+      "name": "Rows",
+      "image": "images/bench/rows.jpg"
+    },
+    {
+      "id": 7,
+      "workoutGroupId": 1,
+      "max": 5,
+      "text": "A wonderful place to reconnect with nature.",
+      "name": "Tricep Extensions",
+      "image": "images/bench/tricep-extensions.jpg"
+    },
+    {
+      "id": 8,
+      "workoutGroupId": 1,
+      "max": 4,
+      "text": "The stars at night were a revelation!",
+      "name": "Chest Press",
+      "image": "images/bench/chest-press.jpg"
+    },
+    {
+      "id": 9,
+      "workoutGroupId": 1,
+      "max": 5,
+      "text": "What a magnificent view!",
+      "name": "Chest Flys",
+      "image": "images/bench/chest-flys.jpg"
+    },
+    {
+      "id": 10,
+      "workoutGroupId": 2,
+      "max": 5,
+      "text": "I caught a world-record-breaking trout here on my last visit.",
+      "name": "Push Ups",
+      "image": "images/chest_and_back/push-ups.jpg"
+    },
+    {
+      "id": 11,
+      "workoutGroupId": 2,
+      "max": 5,
+      "text": "A wonderful place to reconnect with nature.",
+      "name": "Renegade Rows",
+      "image": "images/chest_and_back/renegade-rows.jpg"
+    },
+    {
+      "id": 12,
+      "workoutGroupId": 2,
+      "max": 4,
+      "text": "The stars at night were a revelation!",
+      "name": "Chest Press",
+      "image": "images/chest_and_back/chest-press.jpg"
+    },
+    {
+      "id": 13,
+      "workoutGroupId": 2,
+      "max": 5,
+      "text": "What a magnificent view!",
+      "name": "Reverse Angels",
+      "image": "images/chest_and_back/reverse-angel.jpg"
+    },
+    {
+      "id": 14,
+      "workoutGroupId": 2,
+      "max": 4,
+      "text": "The campground was beautiful, but the bugs could bite sometimes.",
+      "name": "W-Extensions",
+      "image": "images/chest_and_back/w-extensions.jpg"
+    },
+    {
+      "id": 15,
+      "workoutGroupId": 3,
+      "max": 5,
+      "text": "A wonderful place to reconnect with nature.",
+      "name": "Bicep Curls",
+      "image": "images/upperbody/bicep-curls.jpg"
+    },
+    {
+      "id": 16,
+      "workoutGroupId": 3,
+      "max": 4,
+      "text": "The stars at night were a revelation!",
+      "name": "Upright Rows",
+      "image": "images/upperbody/upright-rows.jpg"
+    },
+    {
+      "id": 17,
+      "workoutGroupId": 3,
+      "max": 5,
+      "text": "What a magnificent view!",
+      "name": "Shoulder Press",
+      "image": "images/upperbody/shoulder-press.jpg"
+    },
+    {
+      "id": 18,
+      "workoutGroupId": 3,
+      "max": 4,
+      "text": "The campground was beautiful, but the bugs could bite sometimes.",
+      "name": "Bent Rows",
+      "image": "images/upperbody/bent-rows.jpg"
+    },
+    {
+      "id": 20,
+      "workoutGroupId": 2,
+      "max": 4,
+      "text": "The campground was beautiful, but the bugs could bite sometimes.",
+      "name": "Back Extensions",
+      "image": "images/chest_and_back/back-extensions.jpg"
+    },
+    {
+      "id": 21,
+      "workoutGroupId": 4,
+      "max": 5,
+      "text": "What a magnificent view!",
+      "name": "Forward Legs",
+      "image": "images/legs/forward-leg.jpg"
+    },
+    {
+      "id": 22,
+      "workoutGroupId": 4,
+      "max": 4,
+      "text": "The campground was beautiful, but the bugs could bite sometimes.",
+      "name": "Side Legs",
+      "image": "images/legs/side-leg.jpg"
+    },
+    {
+      "id": 23,
+      "workoutGroupId": 4,
+      "max": 4,
+      "text": "The campground was beautiful, but the bugs could bite sometimes.",
+      "name": "Cross Legs",
+      "image": "images/legs/cross-leg.jpg"
+    },
+    {
+      "id": 24,
+      "workoutGroupId": 4,
+      "max": 5,
+      "text": "What a magnificent view!",
+      "name": "Squats",
+      "image": "images/legs/squats.jpg"
+    },
+    {
+      "id": 25,
+      "workoutGroupId": 4,
+      "max": 4,
+      "text": "The campground was beautiful, but the bugs could bite sometimes.",
+      "name": "Single Leg Squats",
+      "image": "images/legs/single-leg-squat.jpg"
+    },
+    {
+      "id": 26,
+      "workoutGroupId": 4,
+      "max": 4,
+      "text": "The campground was beautiful, but the bugs could bite sometimes.",
+      "name": "Squat Holds",
+      "image": "images/legs/squat-hold.jpg"
+    }
+  ],
+  "logs": [
+    {
+      "id": 0,
+      "workoutGroupId": 0,
+      "rating": 3,
+      "text": "Felt sore...",
+      "date": "09/09/2020"
+    },
+    {
+      "id": 1,
+      "workoutGroupId": 0,
+      "rating": 4,
+      "text": "Felt good...",
+      "date": "06/23/2020"
+    },
+    {
+      "id": 2,
+      "workoutGroupId": 0,
+      "rating": 5,
+      "text": "Felt happy to run 2 miles",
+      "date": "08/29/2020"
+    },
+    {
+      "id": 3,
+      "workoutGroupId": 0,
+      "rating": 5,
+      "text": "Whatever",
+      "date": "04/28/2021"
+    },
+    {
+      "id": 4,
+      "workoutGroupId": 0,
+      "rating": 4,
+      "text": "Met some really cool people",
+      "date": "05/08/2021"
+    },
+    {
+      "id": 5,
+      "workoutGroupId": 1,
+      "rating": 4,
+      "text": "Tired tired tired",
+      "date": "05/08/2021"
+    },
+    {
+      "id": 6,
+      "workoutGroupId": 1,
+      "rating": 5,
+      "text": "Really good morning. Good breakfast",
+      "date": "05/08/2021"
+    },
+    {
+      "id": 7,
+      "workoutGroupId": 1,
+      "rating": 5,
+      "text": "Testing",
+      "date": "05/08/2021"
+    },
+    {
+      "id": 8,
+      "workoutGroupId": 1,
+      "rating": 4,
+      "text": "Does this work?",
+      "date": "05/08/2021"
+    },
+    {
+      "id": 9,
+      "workoutGroupId": 1,
+      "rating": 5,
+      "text": "Good",
+      "date": "12/01/2020"
+    },
+    {
+      "id": 10,
+      "workoutGroupId": 2,
+      "rating": 5,
+      "text": "Happy!",
+      "date": "12/08/2020"
+    },
+    {
+      "id": 11,
+      "workoutGroupId": 2,
+      "rating": 5,
+      "text": "Neck hurts",
+      "date": "01/04/2021"
+    },
+    {
+      "id": 12,
+      "workoutGroupId": 2,
+      "rating": 4,
+      "text": "Sore from yesterday",
+      "date": "01/05/2021"
+    },
+    {
+      "id": 13,
+      "workoutGroupId": 2,
+      "rating": 5,
+      "text": "Good",
+      "date": "01/08/2021"
+    },
+    {
+      "id": 14,
+      "workoutGroupId": 2,
+      "rating": 4,
+      "text": "Monthly goals reached",
+      "date": "02/08/2021"
+    },
+    {
+      "id": 15,
+      "workoutGroupId": 3,
+      "rating": 5,
+      "text": "Felt sore...",
+      "date": "03/08/2021"
+    },
+    {
+      "id": 16,
+      "workoutGroupId": 3,
+      "rating": 4,
+      "text": "Had a great workout. New records",
+      "date": "04/08/2021"
+    },
+    {
+      "id": 17,
+      "workoutGroupId": 3,
+      "rating": 5,
+      "text": "Happy",
+      "date": "05/01/2021"
+    },
+    {
+      "id": 18,
+      "workoutGroupId": 3,
+      "rating": 4,
+      "text": "sore...",
+      "date": "05/03/2021"
+    },
+    {
+      "id": 19,
+      "workoutGroupId": 3,
+      "rating": 5,
+      "text": "Weather is great",
+      "date": "06/08/2020"
+    }
+  ],
+  "trainers": [
+    {
+      "id": 0,
+      "name": "Marcus",
+      "image": "images/marcus.jpeg",
+      "featured": true,
+      "description": "Look in the mirror...that's your competition."
+    },
+    {
+      "id": 1,
+      "name": "Josh",
+      "image": "images/josh.png",
+      "featured": false,
+      "description": "Do something today that your future self will thank you for."
+    },
+    {
+      "id": 2,
+      "name": "Jenny",
+      "image": "images/jenny.jpeg",
+      "featured": false,
+      "description": "One day or day one? You decide!"
+    },
+    {
+      "id": 3,
+      "name": "Brock",
+      "image": "images/brock.jpeg",
+      "featured": false,
+      "description": "Don't wish for your good body, work for it!"
+    }
+  ],
+  "promotions": [
+    {
+      "id": 0,
+      "name": "1 Month Free!",
+      "image": "images/monthfree.jpeg",
+      "featured": true,
+      "description": "Get one month free for every 2 months you stay with us!"
+    }
+  ],
+  "feedback": [
+    {
+      "id": 0,
+      "firstname": "Test",
+      "lastname": "Test",
+      "phoneNum": "12345",
+      "email": "test@test.com",
+      "agree": true,
+      "contactType": "Email",
+      "feedback": "test"
+    },
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    },
+    {
+      "firstName": "Blue",
+      "lastName": "Gun",
+      "phoneNum": "1231231231",
+      "email": "123@xx.com",
+      "agree": true,
+      "contactType": "Phone",
+      "feedback": "Grew plant tree dead",
+      "id": 3
+    }
+  ]
+}
